@@ -1,29 +1,6 @@
-var loadTasks = function() {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-  
-    // if nothing in localStorage, create a new object to track all task status arrays
-    if (!tasks) {
-      tasks = {
-        toDo: [],
-        inProgress: [],
-        inReview: [],
-        done: []
-      };
-    }
-  
-    // loop over object properties
-    $.each(tasks, function(list, arr) {
-      console.log(list, arr);
-      // then loop over sub-array
-      arr.forEach(function(task) {
-        createTask(task.text, task.date, list);
-      });
-    });
-  };
+var tasks = {};
 
-var saveTasks = function() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
+
 
 //Today Date
 var todayDate = document.querySelector("#currentDay");
@@ -31,35 +8,46 @@ var currentDate =moment();
 todayDate.textContent = currentDate.format("dddd , MMMM Do");
 
 //create task
-$("#task").on("click","p",function() {
-    var text =$(this)
-    .text()
-    .trim();
-    var addText = $("<textarea>")
-    .addClass("task-control")
-    .val(text)
-    $(this).replaceWith(addText);
- 
-    console.log(text);
+
+$(".list-group").on("click","p", function(){
+  var text = $(this)
+  .text()
+  .trim();
+  var textInput = $("<textarea>")
+  .addClass("textarea")
+  .val(text);
+  $(this).replaceWith(textInput); 
+  textInput.trigger("focus");
+  console.log(this);
 });
-// save task
-$(".fa-save").on("click","textarea", function(){
-    var text = $(this)
-    .val()
-    .trim();
 
-    var status = $(this)
-    .closest(".textarea")
-    .attr("id")
-    .replace("list-","");
+//save task
+
+$(".saveBtn").click(".textarea",function(){
+  var taskText = $(".textarea")
+  .val()
+  .trim();
+
+ //get the parent ul`s id attribute
+ var status = $("textarea")
+ .closest(".list-group")
+ .attr("id")
+ .replace("list-","");
+
+ //get the task`s position in the list of other li elements
+ var index = $(".textarea")
+ .closest(".list-group-item")
+ .index();
+ 
 
 
-    task[status].text = text;
-    
-    var taskP = $("<p>")
-    .addClass("task-control")
-    .text(text);
+
+  var taskP =$("<p>")
+  .text(taskText);
+
+  $(".textarea").replaceWith(taskP);;
+});
   
-    $(this).replaceWith(taskP);
-console.log(this)
-})
+
+
+
