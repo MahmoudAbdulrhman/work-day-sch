@@ -1,53 +1,86 @@
-var tasks = {};
-
-
-
-//Today Date
 var todayDate = document.querySelector("#currentDay");
 var currentDate =moment();
 todayDate.textContent = currentDate.format("dddd , MMMM Do");
 
-//create task
+var tasks = [];
 
-$(".list-group").on("click","p", function(){
-  var text = $(this)
-  .text()
-  .trim();
-  var textInput = $("<textarea>")
-  .addClass("textarea")
-  .val(text);
-  $(this).replaceWith(textInput); 
-  textInput.trigger("focus");
-  console.log(this);
-});
+// load information from localstorge
+var loadTasks = function() {
+  tasks = JSON.parse(localStorage.getItem("tasks"));
 
-//save task
+  // if local storage is empty, create new array
+  if (!tasks) {
+      tasks = [];
+  }
 
-$(".saveBtn").click(".textarea",function(){
-  var taskText = $(".textarea")
-  .val()
-  .trim();
+  // Loop through localStorage
+  for (i = 0; i < tasks.length; i++) {
+      
+      var taskId = tasks[i].taskSpan;
+      var taskEntry = $("#" + taskId);
+      taskEntry.val(tasks[i].text);
+  }
+};
 
- //get the parent ul`s id attribute
- var status = $("textarea")
- .closest(".list-group")
- .attr("id")
- .replace("list-","");
+// save in to the localstorge
+var saveTasks = function() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
 
- //get the task`s position in the list of other li elements
- var index = $(".textarea")
- .closest(".list-group-item")
- .index();
- 
-
-
-
-  var taskP =$("<p>")
-  .text(taskText);
-
-  $(".textarea").replaceWith(taskP);;
-});
+// create task
+$(".row").on("click", ".saveBtn", function() {
+  // Grab the text from the task input
+  newTask = $(this).prev();
+  taskId = newTask.attr("id");
   
+  tasks.push({
+      text: newTask.val().trim(),
+      taskSpan: taskId
+  });
 
+  saveTasks();
+});
 
+// Color Code Time Blocks 
+var auditTask = function() {
+  
+  for (i = 1; i < 10; i++){
+  
+  var timeSpen = $("#row" + i).find("p").html();
+  
+  var timeColm = moment(timeSpen, "HHA");
+  
+  var wTime = timeColm.format("HH");
+  var actTime = moment().format("HH");
 
+  var timeDef= actTime - wTime;
+
+  var changeColor = $("#row" + i).find("textarea");
+
+  if (actTime === wTime) {
+      changeColor.removeClass("past future");
+      changeColor.addClass("present");
+  } 
+  else if (timeDef> 0) {
+      changeColor.removeClass("future present");
+      changeColor.addClass("past");
+  } 
+  else if (timeDef< 0){
+      changeColor.removeClass("past present");
+      changeColor.addClass("future");
+  } 
+}
+};
+
+$(".trash").on("click",function(){
+  localStorage.clear();
+  location.reload()
+})
+
+// Check task statuses every 5 minutes
+setInterval(function() {
+  auditTask();
+}, 10);
+
+loadTasks();
+auditTask();

@@ -12,7 +12,12 @@ textarea{
   border-left: 1px solid black;
   padding: 10px;
 }
-
+p {
+  color: black;
+  font-weight: bold;
+  margin: 15px;
+  font-size: 20px;
+}
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -70,6 +75,19 @@ textarea{
   transition: all .3s ease-in-out;
 }
 
-.task-control {
-  width: 100%;
+.hour {
+  width: 100px;
+}
+
+.taskArea {
+  width: calc(100% - 200px);
+  border: solid white 3px;
+  color: black;
+}
+
+.trash {
+  font-size: 60px;
+  background-color: #06AED5;
+  color: white;
+  
 }
