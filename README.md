@@ -24,10 +24,9 @@ This project has been deployed to GitHub Pages. To get this project up and runni
    
   ### Screen shot
 
-<<<<<<< HEAD
+
   ![]assets/image/Screen Shot 2020-08-21 at 11.04.33 PM.png
   ![]assets/image/Screen Shot 2020-08-23 at 1.17.50 AM.png
   ![]assets/image/Screen Shot 2020-08-23 at 10.28.50 PM.png
-=======
-assets/image/Screen Shot 2020-08-23 at 10.28.50 PM.png
->>>>>>> 5f024d666e209c903a572f72c6ffde0ddd06ec58
+
+
