@@ -24,3 +24,4 @@ This project has been deployed to GitHub Pages. To get this project up and runni
    
   ### Screen shot
 
+assets/image/Screen Shot 2020-08-23 at 10.28.50 PM.png
