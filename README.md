@@ -8,21 +8,19 @@ This project has been deployed to GitHub Pages. To get this project up and runni
 ## Getting Started
 
 This project has been deployed to GitHub Pages. To get this project up and running, you can follow the deployment link. Or, download the sources files to use this as a template.
-* [GitHub Repository] 
+* [GitHub Repository] https://github.com/MahmoudAbdulrhman/work-day-sch
 
 ### This project has the following features: 
-* A generate button
-    * This will send the user a series of prompts and confirms
-    * After user data is collected, a random password will be generated using Javascript
-  * The user will be prompted to choose from the following password criteria: 8 and 128 characters
-* The user will recieve a confirm for: 
-    * Password containing special characters, numbers, and uppercase
-    * This will need to randomly generate a selection or randomly select array data, so math.random and math.floor will need to be used.     
-* The application should validate user input and ensure that at least one character type is selected.
-    * If, else if statement 
-* Once all prompts are answered, the user will be presented with a password matching the answered prompts. Displaying the generated password in an alert is acceptable, but attempt to write the password to the page instead.
-    * Event listener will determine the password output with function to populate the value into the test area.
-* As a bonus, the user should also have the option to click a button to copy the password to their clipboard.
-    * Copy execCommand in event listener
+* A textarea 
+    * to add new task
+    * edite existed task
+  * The user will be pable to save the modifid task by click on the save button
+* color alert function for task dead line: 
+    * orange : future our upcoming task
+    * red : current task 
+    * green: pass due task    
+* a clear all task button : 
+    * to clear all writen task
+   
   ### Screen shot
 
